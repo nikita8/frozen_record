@@ -207,6 +207,9 @@ module FrozenRecord
         end
       end
 
+      puts "**************"
+      puts "Enforced?: #{FrozenRecord.enforce_max_records_scan}, Max Records: #{@klass.max_records_scan}, Records: #{records.size}"
+      puts "**************"
       if FrozenRecord.enforce_max_records_scan && @klass.max_records_scan && records.size > @klass.max_records_scan
         raise SlowQuery, "Scanning #{records.size} records is too slow, the allowed maximum is #{@klass.max_records_scan}. Try to find a better index or consider an alternative storage"
       end
